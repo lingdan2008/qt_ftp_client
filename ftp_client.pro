@@ -26,10 +26,12 @@ DEFINES += QT_DEPRECATED_WARNINGSQObject
 
 SOURCES += \
         main.cpp \
-        dialog.cpp
+        dialog.cpp \
+    ftpmanager.cpp
 
 HEADERS += \
-        dialog.h
+        dialog.h \
+    ftpmanager.h
 
 FORMS += \
         dialog.ui

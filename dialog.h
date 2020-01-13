@@ -2,15 +2,16 @@
 #define DIALOG_H
 
 #include <QDialog>
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
-#include <QUrl>
+//#include <QtNetwork/QNetworkAccessManager>
+//#include <QtNetwork/QNetworkReply>
+//#include <QUrl>
 #include <QFileDialog>
 #include <QFile>
 #include <QString>
-#include <QMetaEnum>
 #include <QMessageBox>
 #include <QDebug>
+
+#include "ftpmanager.h"
 
 namespace Ui {
 class Dialog;
@@ -25,24 +26,19 @@ public:
     ~Dialog();
 
 public slots:
-    bool initFTP();
-
-    void replyFinished(QNetworkReply *);
-
-    void readContent();
-
-    void replyError(QNetworkReply::NetworkError);
 
 private slots:
     void on_pushButton_Download_clicked();
 
     void on_pushButton_Upload_clicked();
 
+    void error(QNetworkReply::NetworkError err);
+
 private:
     Ui::Dialog *ui;
 
-    QFile *m_pFile;
-    QNetworkReply *m_pReply;
+    FtpManager m_ftp;
+
 };
 
 #endif // DIALOG_H
