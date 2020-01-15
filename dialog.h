@@ -35,6 +35,9 @@ private slots:
     void error(QNetworkReply::NetworkError err);
 
 private:
+    QString getFileName(QString sFilePath);
+
+private:
     Ui::Dialog *ui;
 
     FtpManager m_ftp;

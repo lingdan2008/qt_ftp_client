@@ -37,8 +37,9 @@ void Dialog::on_pushButton_Upload_clicked()
     if (!fileList.isEmpty()) {
         for (int i=0; i<fileList.count(); i++) {
             QString filePath = fileList.at(i);
+            QString fileName = getFileName(filePath);
 
-            m_ftp.put(filePath, "upload.txt");
+            m_ftp.put(filePath, fileName);
         }
     }
 
@@ -56,4 +57,23 @@ void Dialog::error(QNetworkReply::NetworkError err)
     }
 
     qDebug() << "Dialog::error";
+}
+
+QString Dialog::getFileName(QString sFilePath)
+{
+    QString temp;
+    QString fileName;
+    int count = -1;
+    fileName = sFilePath;
+
+    for(int i = 0; temp != "/"; i++){
+        temp = fileName.right(1);
+        fileName.chop(1);
+        count++;
+    }
+
+    fileName = sFilePath.right(count);
+
+    qDebug() << fileName;
+    return fileName;
 }
